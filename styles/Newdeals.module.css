@@ -1,0 +1,12 @@
+.hcentre{
+    display: flex;
+    justify-content: center;
+    
+
+  }
+.carcolor{
+  background-color: rgba(65, 113, 211,0.2);
+}
+.displayflex{
+  display: flex;
+}

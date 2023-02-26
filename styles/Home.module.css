@@ -1,0 +1,99 @@
+.colorgray{
+  background-color: rgba(166, 168, 168, 0.2);
+}
+
+
+
+.scanner h1 {
+  color: transparent;
+  font-size: 1.4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.scanner h1::before {
+  content: "Create new events and join with Wolf Events as a hosting";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  border-right: 4px solid #111313;
+  overflow: hidden;
+  color: #131919;
+  animation: load91371 2s linear infinite;
+}
+
+@keyframes load91371 {
+  0%, 10%, 100% {
+    width: 0;
+  }
+
+  10%,20%,30%,40%,50%,60%,70%,80%,90%,100% {
+    border-right-color: transparent;
+  }
+
+  11%,21%,31%,41%,51%,61%,71%,81%,91% {
+    border-right-color: #131a1a;
+  }
+
+  60%, 80% {
+    width: 100%;
+  }
+}
+.hcentre{
+  display: flex;
+  justify-content: center;
+}
+.imgwh{
+  width:100%;
+  height:100%
+}
+.button {
+  --color:  rgb(65, 113, 211);
+  font-family: inherit;
+  display: inline-block;
+  width: 8em;
+  height: 2.6em;
+  line-height: 2.5em;
+  margin: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--color);
+  transition: color .5s;
+  z-index: 1;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: var(--color);
+ }
+ 
+ .button:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
+ }
+ 
+ .button:hover {
+  color: #fff;
+ }
+ 
+ .button:before {
+  top: 100%;
+  left: 100%;
+  transition: all .7s;
+ }
+ 
+ .button:hover:before {
+  top: -30px;
+  left: -30px;
+ }
+ 
+ .button:active:before {
+  background: rgb(66, 125, 214);
+  transition: background 0s;
+ }
