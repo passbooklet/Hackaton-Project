@@ -1,61 +1,19 @@
-import React from 'react'
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import useAdmininput from '@/customHooks/useAdmininput';
 import styles from "../../styles/Admininput.module.css"
 import { Images } from 'react-bootstrap-icons';
 import Carousel from 'react-multi-carousel';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import useCorres from '@/customHooks/useCorres';
+import Spinner from 'react-bootstrap/Spinner';
 
 
 
 const Admininput = () => {
 
-  const {
-    save,
-    savefile,
-    title,
-    description,
-    location,
-    setdescription,
-    setlocation,
-    settitle,
-    data,
-    cancel,
-    update,
-    toggle,
-    onEditHandler,
-    time,
-    settime,
-    date,
-    setdate,
-      
-  } = useAdmininput()
-
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 1555 },
-      items: 7
-    },
-    desktop: {
-      breakpoint: { max: 1554, min: 1182},
-      items: 4
-    },
-    tablet: {
-      breakpoint: { max: 1180, min: 894 },
-      items: 3
-    },
-    mobile: {
-      breakpoint: { max: 894, min: 599},
-      items: 2
-    },
-    minimobile: {
-      breakpoint: { max: 598, min: 0 },
-      items: 1
-    }
-  };
+  const { save, savefile, title, description, location, setdescription, setlocation, settitle, data, cancel, update, toggle, onEditHandler, time, settime, date, setdate, loader } = useAdmininput()
+  const { responsive } = useCorres()
 
 
   return (
@@ -79,8 +37,8 @@ const Admininput = () => {
             />
           </InputGroup>
         </div>
-       
-       
+
+
         <div>
           <InputGroup className="mb-3">
             <InputGroup.Text id="inputGroup-sizing-default" >
@@ -108,8 +66,8 @@ const Admininput = () => {
               aria-describedby="inputGroup-sizing-default"
             />
           </InputGroup>
-          </div>
-          <div>
+        </div>
+        <div>
           <InputGroup className="mb-3">
             <InputGroup.Text id="inputGroup-sizing-default" >
               location
@@ -122,47 +80,48 @@ const Admininput = () => {
               aria-describedby="inputGroup-sizing-default"
             />
           </InputGroup>
-          </div>
-          <div className={styles.hcentre}>
-          <input 
-             type="date"
+        </div>
+        <div className={styles.hcentre}>
+          <input
+            type="date"
             onChange={(e) => { setdate(e.target.value) }}
             placeholder=".." />
-         
-          </div>
+
+        </div>
         <br />
         <div className={styles.hcentre}>
           <input
-            style={{ display: "none" }}
+           className={styles.chosefile}
             id="file" type="file"
             onChange={savefile}
             placeholder=".." />
           <label htmlFor="file"><Images width={50} height={50} />
           </label>
         </div>
-        
-        
+
+
         <br />
         <div className={styles.hcentre}>
-          {toggle ? <button onClick={save} className={styles.button} >Add to new deals</button> :
+          {loader ?
+            <p>{toggle ? <button onClick={save} className={styles.button} >Add to new deals</button> :
               <button onClick={onEditHandler} className={styles.button} >EDIT</button>
-            }
+            }</p> : <Spinner animation="border" role="status" />}
         </div>
         <br />
         <br />
         <div>
 
         </div>
-        
-        
-        
+
+
+
       </div>
 
 
-<br/>
-<br/>
-<br/>
-<br/>
+      <br />
+      <br />
+      <br />
+      <br />
 
 
 
@@ -170,36 +129,36 @@ const Admininput = () => {
 
 
 
-{/* to display new deals for delete and updating */}
+      {/* to display new deals for delete and updating */}
       <div>
         <Carousel responsive={responsive}>
-          {data.map((item) => {
+          {data.map((item:any, index:any) => {
             return (
               <div>
-               <Card className={styles.widthheight}>
-      <Card.Img variant="top"  src={item.attachmentURL} />
-      <Card.Body>
-        <Card.Title>{item.title}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{item.location}</Card.Subtitle>
-        <Card.Subtitle className="mb-3 text-muted">{item.date}</Card.Subtitle>
-        <Card.Text>
-        {item.description}
-        </Card.Text>
-        <Card.Subtitle className="mb-2 text-muted">{item.time}</Card.Subtitle>
-        <div className={styles.hcentre}>
-        <button className={styles.button12} onClick={() => cancel(item)}>cancel</button>
-        <button className={styles.button13}  onClick={() => update(item)}>update</button>
-        </div>
-      </Card.Body>
-    </Card>
+                <Card className={styles.widthheight}>
+                  <Card.Img variant="top" src={item.attachmentURL} />
+                  <Card.Body>
+                    <Card.Title key={index}>{item.title}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{item.location}</Card.Subtitle>
+                    <Card.Subtitle className="mb-3 text-muted">{item.date}</Card.Subtitle>
+                    <Card.Text>
+                      {item.description}
+                    </Card.Text>
+                    <Card.Subtitle className="mb-2 text-muted">{item.time}</Card.Subtitle>
+                    <div className={styles.hcentre}>
+                      <button className={styles.button12} onClick={() => cancel(item)}>cancel</button>
+                      <button className={styles.button13} onClick={() => update(item)}>update</button>
+                    </div>
+                  </Card.Body>
+                </Card>
               </div>
             )
           })}
         </Carousel>
       </div>
-<div>
-  
-</div>
+      <div>
+
+      </div>
     </div>
   )
 }

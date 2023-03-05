@@ -7,15 +7,11 @@ import Card from 'react-bootstrap/Card';
 import useAdmininput from '@/customHooks/useAdmininput';
 import styles1 from "../../styles/Admininput.module.css"
 const Usercom = () => {
-    const {
-        data, 
-        checked,
-         addtochart, 
-         serachtext, 
-         setserachtext,
-         setaddtochart,
-         cancelcheaked,
-    } = useAdmininput()
+    const {addtochart,serachtext,setserachtext,cancelcheaked,} = useAdmininput()
+
+
+
+    
     return (
         <div>
             <div className={styles.carcolor}>
@@ -34,14 +30,14 @@ const Usercom = () => {
                 <Row>
 
 
-                    {addtochart.map((item1) => {
+                    {addtochart.map((item1,index) => {
                         return (
                             <Col xs={6} md={4} lg={3}>
                                 <span className={styles.displayflex} >
                                     <Card className={styles.widthheight}>
                                         <Card.Img variant="top" src={item1.attachmentURL} />
                                         <Card.Body>
-                                            <Card.Title>{item1.title}</Card.Title>
+                                            <Card.Title key={index}>{item1.title}</Card.Title>
                                             <Card.Subtitle className="mb-2 text-muted">{item1.location}</Card.Subtitle>
                                             <Card.Subtitle className="mb-3 text-muted">{item1.date}</Card.Subtitle>
                                             <Card.Text>
